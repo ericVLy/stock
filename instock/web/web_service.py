@@ -16,11 +16,7 @@ from tornado import gen
 cpath_current = os.path.dirname(os.path.dirname(__file__))
 cpath = os.path.abspath(os.path.join(cpath_current, os.pardir))
 sys.path.append(cpath)
-# log_path = os.path.join(cpath_current, 'log')
-# if not os.path.exists(log_path):
-#     os.makedirs(log_path)
-# logging.basicConfig(format='%(asctime)s %(message)s', filename=os.path.join(log_path, 'stock_web.log'))
-# logging.getLogger().setLevel(logging.ERROR)
+
 import instock.lib.torndb as torndb
 import instock.lib.database as mdb
 import instock.lib.version as version
@@ -29,7 +25,7 @@ import instock.web.dataIndicatorsHandler as dataIndicatorsHandler
 import instock.web.base as webBase
 from instock.lib.log import DemoLogger
 
-logprint = DemoLogger(log_name="stock_web")
+DemoLogger(log_name="stock_web", logger_name="", log_level="error")
 
 __author__ = 'myh '
 __date__ = '2023/3/10 '

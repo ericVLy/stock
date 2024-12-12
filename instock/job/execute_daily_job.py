@@ -13,11 +13,7 @@ import sys
 cpath_current = os.path.dirname(os.path.dirname(__file__))
 cpath = os.path.abspath(os.path.join(cpath_current, os.pardir))
 sys.path.append(cpath)
-# log_path = os.path.join(cpath_current, 'log')
-# if not os.path.exists(log_path):
-#     os.makedirs(log_path)
-# logging.basicConfig(format='%(asctime)s %(message)s', filename=os.path.join(log_path, 'stock_execute_job.log'))
-# logging.getLogger().setLevel(logging.INFO)
+
 import init_job as bj
 import basic_data_daily_job as hdj
 import basic_data_other_daily_job as hdtj
@@ -29,7 +25,7 @@ import klinepattern_data_daily_job as kdj
 import selection_data_daily_job as sddj
 from instock.lib.log import DemoLogger
 
-logprint = DemoLogger(log_name="stock_execute_job")
+DemoLogger(log_name="stock_execute_job", logger_name="", log_level="info")
 
 
 __author__ = 'myh '

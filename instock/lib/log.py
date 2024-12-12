@@ -38,8 +38,9 @@ class DemoLogger():
         fh = logging.FileHandler(log_file,encoding="UTF-8")
 
         # 创建格式器,并将sh，fh设置对应的格式
-        formator = logging.Formatter(fmt="[%(asctime)s][%(pathname)s]"+\
-                                     "[%(module)s][%(funcName)s][%(levelname)s]: %(message)s",
+        formator = logging.Formatter(fmt="[%(asctime)s][%(filename)s]"+
+                                     "[%(module)s][%(funcName)s][line:%(lineno)d]"+
+                                     "[%(levelname)s]: %(message)s",
                                      datefmt="%Y/%m/%d %X")
         sh.setFormatter(formator)
         fh.setFormatter(formator)
