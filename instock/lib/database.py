@@ -3,17 +3,32 @@
 
 import logging
 import os
+import json
 import pymysql
 from sqlalchemy import create_engine
 from sqlalchemy.types import NVARCHAR
 from sqlalchemy import inspect
 
+try:
+    from ..settings import database_settings
+except BaseException as e:
+    logging.warning("without settings.py trying to create file.")
+    with open(os.path.join(os.path.abspath("."), "..", "settings.py"), "w+", encoding="utf-8") as settings_file:
+        database_settings = {"mysql_host": "localhost",
+                             "mysql_user": "root",
+                             "mysql_password": "ly525001",
+                             }
+        setting_w = "database_settings = " + json.dumps(database_settings, indent=4)
+        settings_file.writelines(setting_w)
+    from ..settings import database_settings
+
+
 __author__ = 'myh '
 __date__ = '2023/3/10 '
 
-db_host = "localhost"  # 数据库服务主机
-db_user = "root"  # 数据库访问用户
-db_password = "root"  # 数据库访问密码
+db_host = database_settings["mysql_host"]  # 数据库服务主机
+db_user = database_settings["mysql_user"]  # 数据库访问用户
+db_password = database_settings["mysql_password"]  # 数据库访问密码
 db_database = "instockdb"  # 数据库名称
 db_port = 3306  # 数据库服务端口
 db_charset = "utf8mb4"  # 数据库字符集
